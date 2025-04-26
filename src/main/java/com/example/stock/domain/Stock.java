@@ -15,6 +15,9 @@ public class Stock {
     @Getter
     private Long quantity;
 
+    @Version
+    private Long version;
+
     public Stock() {
 
     }
