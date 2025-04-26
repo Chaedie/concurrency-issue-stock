@@ -8,16 +8,15 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class StockService {
-
+public class PessimisticLockStockService {
     private final StockRepository stockRepository;
 
+    @Transactional
+    public void decrease(Long id, Long quantity) {
+        Stock stock = stockRepository.findByIdWithPessimisticLock(id);
 
-    // @Transactional
-    public synchronized void decrease(Long id, Long quantity) {
-        Stock stock = stockRepository.findById(id).orElseThrow();
         stock.decrease(quantity);
 
-        stockRepository.saveAndFlush(stock);
+        stockRepository.save(stock);
     }
 }

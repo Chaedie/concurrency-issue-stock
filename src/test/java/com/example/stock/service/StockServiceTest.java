@@ -18,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StockServiceTest {
 
     @Autowired
-    private StockService stockService;
+    // private StockService stockService;
+    private PessimisticLockStockService stockService;
 
     @Autowired
     private StockRepository stockRepository;
